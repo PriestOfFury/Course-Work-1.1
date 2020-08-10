@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B1CD50124C72FC2000E86AE /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1CD50024C72FC2000E86AE /* Operations.swift */; };
+		5B3B035724DC501E0026A856 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B035624DC501E0026A856 /* NodeView.swift */; };
+		5B3B038324DD94540026A856 /* MyScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B038224DD94540026A856 /* MyScrollView.swift */; };
+		5B3B038524DDA7250026A856 /* IBDesignable extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B038424DDA7250026A856 /* IBDesignable extensions.swift */; };
+		5B84930824CA03A700BEE480 /* StationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84930724CA03A700BEE480 /* StationNode.swift */; };
+		5B84930A24CA040800BEE480 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84930924CA040800BEE480 /* Connection.swift */; };
+		5B84930C24CA053500BEE480 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B84930B24CA053500BEE480 /* Path.swift */; };
 		5B8D598024ABEEA700329AEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8D597F24ABEEA700329AEE /* AppDelegate.swift */; };
 		5B8D598224ABEEA700329AEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8D598124ABEEA700329AEE /* SceneDelegate.swift */; };
 		5B8D598424ABEEA700329AEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8D598324ABEEA700329AEE /* ViewController.swift */; };
@@ -14,9 +21,20 @@
 		5B8D598A24ABEEA800329AEE /* Skillbox_Course_work_1_0.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B8D598824ABEEA800329AEE /* Skillbox_Course_work_1_0.xcdatamodeld */; };
 		5B8D598C24ABEEB300329AEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B8D598B24ABEEB300329AEE /* Assets.xcassets */; };
 		5B8D598F24ABEEB300329AEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B8D598D24ABEEB300329AEE /* LaunchScreen.storyboard */; };
+		5B8D599724ABEFB500329AEE /* Draft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8D599624ABEFB500329AEE /* Draft.swift */; };
+		5BC7435C24D06CCD004F2A5F /* Stations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC7435B24D06CCD004F2A5F /* Stations.swift */; };
+		5BF506EF24D5D45A0067E5FF /* NodeViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF506EE24D5D45A0067E5FF /* NodeViews.swift */; };
+		5BF506F124D5D4DE0067E5FF /* StationButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF506F024D5D4DE0067E5FF /* StationButtons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B1CD50024C72FC2000E86AE /* Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
+		5B3B035624DC501E0026A856 /* NodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeView.swift; sourceTree = "<group>"; };
+		5B3B038224DD94540026A856 /* MyScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScrollView.swift; sourceTree = "<group>"; };
+		5B3B038424DDA7250026A856 /* IBDesignable extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IBDesignable extensions.swift"; sourceTree = "<group>"; };
+		5B84930724CA03A700BEE480 /* StationNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationNode.swift; sourceTree = "<group>"; };
+		5B84930924CA040800BEE480 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		5B84930B24CA053500BEE480 /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 		5B8D597C24ABEEA700329AEE /* Skillbox Course work 1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skillbox Course work 1.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B8D597F24ABEEA700329AEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B8D598124ABEEA700329AEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +44,10 @@
 		5B8D598B24ABEEB300329AEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B8D598E24ABEEB300329AEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B8D599024ABEEB300329AEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B8D599624ABEFB500329AEE /* Draft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Draft.swift; sourceTree = "<group>"; };
+		5BC7435B24D06CCD004F2A5F /* Stations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stations.swift; sourceTree = "<group>"; };
+		5BF506EE24D5D45A0067E5FF /* NodeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeViews.swift; sourceTree = "<group>"; };
+		5BF506F024D5D4DE0067E5FF /* StationButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationButtons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +61,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B3B035524DBE0E90026A856 /* Non usable yet */ = {
+			isa = PBXGroup;
+			children = (
+				5BF506EE24D5D45A0067E5FF /* NodeViews.swift */,
+				5BF506F024D5D4DE0067E5FF /* StationButtons.swift */,
+				5B8D599624ABEFB500329AEE /* Draft.swift */,
+				5B3B038224DD94540026A856 /* MyScrollView.swift */,
+			);
+			path = "Non usable yet";
+			sourceTree = "<group>";
+		};
 		5B8D597324ABEEA700329AEE = {
 			isa = PBXGroup;
 			children = (
@@ -61,7 +94,15 @@
 				5B8D597F24ABEEA700329AEE /* AppDelegate.swift */,
 				5B8D598124ABEEA700329AEE /* SceneDelegate.swift */,
 				5B8D598324ABEEA700329AEE /* ViewController.swift */,
+				5B3B035624DC501E0026A856 /* NodeView.swift */,
+				5BC7435B24D06CCD004F2A5F /* Stations.swift */,
+				5B84930724CA03A700BEE480 /* StationNode.swift */,
+				5B84930924CA040800BEE480 /* Connection.swift */,
+				5B84930B24CA053500BEE480 /* Path.swift */,
+				5B3B038424DDA7250026A856 /* IBDesignable extensions.swift */,
+				5B1CD50024C72FC2000E86AE /* Operations.swift */,
 				5B8D598524ABEEA700329AEE /* Main.storyboard */,
+				5B3B035524DBE0E90026A856 /* Non usable yet */,
 				5B8D598B24ABEEB300329AEE /* Assets.xcassets */,
 				5B8D598D24ABEEB300329AEE /* LaunchScreen.storyboard */,
 				5B8D599024ABEEB300329AEE /* Info.plist */,
@@ -141,10 +182,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B3B038524DDA7250026A856 /* IBDesignable extensions.swift in Sources */,
+				5B8D599724ABEFB500329AEE /* Draft.swift in Sources */,
+				5B3B035724DC501E0026A856 /* NodeView.swift in Sources */,
+				5B1CD50124C72FC2000E86AE /* Operations.swift in Sources */,
+				5B84930824CA03A700BEE480 /* StationNode.swift in Sources */,
+				5B84930A24CA040800BEE480 /* Connection.swift in Sources */,
 				5B8D598424ABEEA700329AEE /* ViewController.swift in Sources */,
 				5B8D598024ABEEA700329AEE /* AppDelegate.swift in Sources */,
+				5BF506EF24D5D45A0067E5FF /* NodeViews.swift in Sources */,
+				5BC7435C24D06CCD004F2A5F /* Stations.swift in Sources */,
+				5BF506F124D5D4DE0067E5FF /* StationButtons.swift in Sources */,
 				5B8D598A24ABEEA800329AEE /* Skillbox_Course_work_1_0.xcdatamodeld in Sources */,
+				5B84930C24CA053500BEE480 /* Path.swift in Sources */,
 				5B8D598224ABEEA700329AEE /* SceneDelegate.swift in Sources */,
+				5B3B038324DD94540026A856 /* MyScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
