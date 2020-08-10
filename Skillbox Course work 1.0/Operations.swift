@@ -106,7 +106,7 @@ class Operations {
     func changeFont(sender: UIButton) {
         
         let attributes: [NSAttributedString.Key: Any] = [
-                   .font: UIFont.boldSystemFont(ofSize: 18)
+                   .font: UIFont.boldSystemFont(ofSize: 10)
                ]
         
         let string = sender.titleLabel?.text! ?? ""

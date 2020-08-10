@@ -52,10 +52,15 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     //adding label of result
     @IBOutlet var labelOutlet: UILabel!
     
+    //testing view for multiple buttons
+    @IBOutlet var testView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        testView.layer.cornerRadius = testView.frame.width / 2
+        testView.clipsToBounds = true
+
         
         
         myScrollView.delegate = self
