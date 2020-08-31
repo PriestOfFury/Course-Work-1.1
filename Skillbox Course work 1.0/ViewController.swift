@@ -10,23 +10,21 @@ import UIKit
 
 //references
 var operations = Operations()
+var stations = Stations()
 
 var viewsArray = [UIView?]()
 var buttonsArray = [UIButton?]()
 
-class ViewController: UIViewController, UIScrollViewDelegate {
+class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITextFieldDelegate {
     
     
-//    var scrollView: MyScrollView!
-
+    
+    
 
 
     @IBOutlet var myView: UIView!
     @IBOutlet var myScrollView: UIScrollView!
     
-    
-    //references
-    var stations = Stations()
 
     var stationsOutletArr = [UIButton]()
     var textArr = [String]()
@@ -41,12 +39,18 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var station4Outlet: UIButton!
     @IBOutlet var station5Outlet: UIButton!
     
+    //line2
+    @IBOutlet var station6Outlet: UIButton!
+    @IBOutlet var station7Outlet: UIButton!
+    
     
     //adding views of connections
     @IBOutlet var connection1: UIView!
     @IBOutlet var connection2: UIView!
     @IBOutlet var connection3: UIView!
     @IBOutlet var connection4: UIView!
+    @IBOutlet var connection5: RotateView!
+    @IBOutlet var connection6: RotateView!
     
     
     //adding label of result
@@ -55,8 +59,119 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     //testing view for multiple buttons
     @IBOutlet var testView: UIView!
     
+    let slidingView = UIView()
+    let svResultLabel = UILabel()
+    let svButtonFrom = UIButton()
+    let svButtonTo = UIButton()
+    let textfieldSV = UITextField()
+    let tableViewSV = UITableView()
+    let svReverseButton = UIButton()
+    let svCancelButtonFrom = UIButton()
+    var svCancelButtonTo = UIButton()
+
+
+
+    var searchedArray = [String]()
+    var tappedFrom = ""
+    
+     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+
+
+        tableViewSV.frame = CGRect(x: 0, y: 50, width: view.frame.width, height: 300)
+        self.slidingView.addSubview(tableViewSV)
+                tableViewSV.delegate = self
+               tableViewSV.dataSource = self
+        tableViewSV.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableViewSV.isHidden = true
+
+
+        
+        
+        
+        
+        //creating sliding view
+        slidingView.frame = CGRect(x: 0, y: self.view.frame.height - 200, width: self.view.frame.width, height: 200)
+        slidingView.backgroundColor = .white
+        slidingView.layer.cornerRadius = slidingView.frame.height / 5
+        slidingView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        slidingView.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 0.2)
+        slidingView.layer.borderWidth = 0.5
+        slidingView.clipsToBounds = true
+        self.view.addSubview(slidingView)
+        
+        //adding (button) into a sliding view
+        svButtonFrom.frame = CGRect(x: self.slidingView.frame.width - (self.slidingView.frame.width / 1.03), y: 50, width: self.slidingView.frame.width / 2.4, height: 50)
+        svButtonFrom.setTitle("Откуда", for: .normal)
+        createBorders(button: svButtonFrom)
+        self.slidingView.addSubview(svButtonFrom)
+        svButtonFrom.addTarget(self, action: #selector(expandSlidingView), for: .touchDown)
+        
+
+        //adding button "То"
+        svButtonTo.frame = CGRect(x: self.slidingView.frame.width - (self.slidingView.frame.width / 2), y: 50, width: self.slidingView.frame.width / 2.4, height: 50)
+        svButtonTo.setTitle("Куда", for: .normal)
+        createBorders(button: svButtonTo)
+        self.slidingView.addSubview(svButtonTo)
+        svButtonTo.addTarget(self, action: #selector(expandSlidingView2), for: .touchDown)
+        
+        
+        
+        textfieldSV.frame = CGRect(x: 0, y: 50, width: self.slidingView.frame.width, height: 50)
+        textfieldSV.backgroundColor = .white
+        textfieldSV.placeholder = "Введите нужную станцию"
+        self.slidingView.addSubview(textfieldSV)
+        textfieldSV.isHidden = true
+        textfieldSV.addTarget(self, action: #selector(addingToArr), for: .allEditingEvents)
+        tableViewSV.reloadData()
+        
+        
+
+        
+        //adding button "Reverse start and end station"
+        svReverseButton.frame = CGRect(x: self.slidingView.frame.width - 30, y: 60, width: 60, height: 60)
+            svReverseButton.addTarget(self, action: #selector(reverseStations), for: .touchDown)
+        createBorders(button: svReverseButton)
+        self.slidingView.addSubview(svReverseButton)
+        let svReverseButtonImageView = UIImageView(image: UIImage(systemName: "arrow.right.arrow.left"))
+        svReverseButtonImageView.tintColor = UIColor(displayP3Red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+        svReverseButton.addSubview(svReverseButtonImageView)
+        
+        
+        //adding result label in sliding view
+        svResultLabel.frame = CGRect(x: 100, y: 0, width: self.slidingView.frame.width, height: 50)
+        svResultLabel.text = "Выберите станцию"
+        self.slidingView.addSubview(svResultLabel)
+        
+        
+        //creating cancel button on To and From buttons
+        svCancelButtonFrom.frame = CGRect(x: self.svButtonFrom.frame.width - 50, y: 0, width: 50, height: self.svButtonFrom.frame.height)
+        svCancelButtonTo.frame = svCancelButtonFrom.frame
+        addImages(sender: svCancelButtonTo)
+        addImages(sender: svCancelButtonFrom)
+        self.svButtonFrom.addSubview(svCancelButtonFrom)
+        self.svButtonTo.addSubview(svCancelButtonTo)
+        self.svCancelButtonTo.addTarget(self, action: #selector(cancelButtonTo), for: .touchDown)
+        self.svCancelButtonFrom.addTarget(self, action: #selector(cancelButtonFrom), for: .touchDown)
+        
+        
+
+        //gestures
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
+           swipeUp.direction = .up
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
+        swipeDown.direction = .down
+           self.view.addGestureRecognizer(swipeUp)
+        self.view.addGestureRecognizer(swipeDown)
+        
+        
+        
+        
         
         testView.layer.cornerRadius = testView.frame.width / 2
         testView.clipsToBounds = true
@@ -123,7 +238,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         operations.changeFont(sender: station1Outlet)
         operations.fullyCalculatePath(sender: stations.station1)
+        setLabelStationToSVButtons(sender: stations.station1)
         labelOutlet.text = operations.result
+        svResultLabel.text = operations.result
+
 
     }
     
@@ -131,7 +249,11 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
         operations.changeFont(sender: station2Outlet)
         operations.fullyCalculatePath(sender: stations.station2)
+        setLabelStationToSVButtons(sender: stations.station2)
         labelOutlet.text = operations.result
+        svResultLabel.text = operations.result
+        
+
 
     }
     
@@ -139,7 +261,11 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         operations.changeFont(sender: station3Outlet)
         operations.fullyCalculatePath(sender: stations.station3)
+        setLabelStationToSVButtons(sender: stations.station3)
         labelOutlet.text = operations.result
+        svResultLabel.text = operations.result
+
+        
 
     }
     
@@ -147,7 +273,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
         operations.changeFont(sender: station4Outlet)
         operations.fullyCalculatePath(sender: stations.station4)
+        setLabelStationToSVButtons(sender: stations.station4)
         labelOutlet.text = operations.result
+        svResultLabel.text = operations.result
+
 
 
     }
@@ -155,22 +284,151 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func buttonAction5(_ sender: UIButton) {
         operations.changeFont(sender: station5Outlet)
         operations.fullyCalculatePath(sender: stations.station5)
+        setLabelStationToSVButtons(sender: stations.station5)
         labelOutlet.text = operations.result
+        svResultLabel.text = operations.result
+
+    }
+    
+    
+    func addImages(sender: UIButton) {
+        
+    let imageView = UIImageView(image: UIImage(systemName: "clear"))
+    imageView.tintColor = UIColor(displayP3Red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+    sender.addSubview(imageView)
+    imageView.frame.size = CGSize(width: sender.frame.width / 2, height: sender.frame.height / 2)
+    imageView.center = CGPoint(x: sender.frame.width / 2, y: sender.frame.height / 2)
+        
     }
     
     
 
-//    func setupScrollView() {
-//        scrollView.translatesAutoresizingMaskIntoConstraints = false
-//        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-//        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-//        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-//        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-//
-//    }
+    func createBorders(button: UIButton) {
+        if button.titleLabel?.text != nil {
+        button.backgroundColor = UIColor(displayP3Red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        button.setTitleColor(.black, for: .normal)
+        }
+        button.layer.cornerRadius = svButtonFrom.frame.height / 3
+        button.clipsToBounds = true
+        slidingView.layer.borderColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 0.2)
+        slidingView.layer.borderWidth = 0.5
+        
+    }
+    
+    
+    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        if gesture.direction == UISwipeGestureRecognizer.Direction.up {
+            UIView.animate(withDuration: 0.3) {
+                self.slidingView.frame = CGRect(x: 0, y: self.view.frame.height / 1.75 , width: self.view.frame.width, height: self.view.frame.height / 3)
+                self.svButtonFrom.isHidden = false
+                self.textfieldSV.isHidden = true
+                self.tableViewSV.isHidden = true
+                self.svButtonTo.isHidden = false
+            }
+        } else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
+            UIView.animate(withDuration: 0.3) {
+                self.slidingView.frame = CGRect(x: 0, y: self.view.frame.height - 200, width: self.view.frame.width, height: 200)
+                self.tableViewSV.isHidden = true
+                self.textfieldSV.isHidden = true
+                self.svButtonFrom.isHidden = false
+                self.svButtonTo.isHidden = false
+            }
+        }
+    }
+    
+    @objc func expandSlidingView() {
+        tappedFrom = "From"
+        UIView.animate(withDuration: 0.3) {
+            self.slidingView.frame = CGRect(x: 0, y: 100 , width: self.view.frame.width, height: self.view.frame.height - 100)
+            self.svButtonFrom.isHidden = true
+            self.textfieldSV.isHidden = false
+            self.tableViewSV.isHidden = false
+            self.svButtonTo.isHidden = true
+        }
+    }
+    
+    @objc func expandSlidingView2() {
+        tappedFrom = "To"
+        svResultLabel.text = operations.result
+        UIView.animate(withDuration: 0.3) {
+            self.slidingView.frame = CGRect(x: 0, y: 100 , width: self.view.frame.width, height: self.view.frame.height - 100)
+            self.svButtonFrom.isHidden = true
+            self.textfieldSV.isHidden = false
+            self.tableViewSV.isHidden = false
+            self.svButtonTo.isHidden = true
+        }
+    }
+    
+    @objc func addingToArr() {
+        if textfieldSV.text != nil {
+            searchedArray.removeAll()
+            var totalMatch = false
 
+            
+        for element in operations.testArr1 {
+
+            let lowercasedElement = element.name.lowercased()
+            if lowercasedElement.contains(textfieldSV.text!.lowercased()) {
+                searchedArray.append(element.name)
+                tableViewSV.reloadData()
+                totalMatch = true
+            }
+
+
+        }
+            
+            if totalMatch == false {
+                searchedArray.removeAll()
+                tableViewSV.reloadData()
+            }
+        }
+
+
+    }
+    
+    @objc func cancelButtonTo() {
+        svButtonTo.setTitle("Куда", for: .normal)
+        svButtonTo.tintColor = .lightGray
+        operations.endStation = nil
+    }
+    
+    @objc func cancelButtonFrom() {
+        svButtonFrom.setTitle("Откуда", for: .normal)
+        svButtonTo.tintColor = .lightGray
+        operations.startStation = nil
+    }
+    
+    @objc func reverseStations() {
+        var contempString = ""
+        var contempStartStation: StationNode?
+        var contempEndStation: StationNode?
+        contempString = svButtonFrom.titleLabel?.text! as! String
+        svButtonFrom.setTitle(svButtonTo.titleLabel?.text, for: .normal)
+        svButtonTo.setTitle(contempString, for: .normal)
+        for i in operations.testArr1 {
+            if i.name == svButtonFrom.titleLabel?.text {
+                contempStartStation = i
+            } else if i.name == svButtonTo.titleLabel?.text {
+                contempEndStation = i
+            }
+        }
+        if contempStartStation != nil && contempEndStation != nil {
+        operations.reverseCalculatePath()
+            labelOutlet.text = operations.result
+            svResultLabel.text = operations.result
+        }
+    }
+    
+    
+    func setLabelStationToSVButtons(sender: StationNode) {
+        
+        if svButtonFrom.titleLabel?.text == "Откуда" {
+            svButtonFrom.setTitle(sender.name, for: .normal)
+        } else if svButtonTo.titleLabel?.text == "Куда" {
+            svButtonTo.setTitle(sender.name, for: .normal)
+        }
+    }
     
 }
-
 
 

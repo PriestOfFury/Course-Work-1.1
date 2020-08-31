@@ -13,8 +13,10 @@ class StationNode {
     var visited = false
     var connections: [Connection] = []
     let name: String
+    let line: String
     
-    init(name: String) {
+    init(name: String, line: String) {
       self.name = name
+        self.line = line
     }
 }

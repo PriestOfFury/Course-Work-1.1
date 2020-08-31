@@ -197,6 +197,8 @@
                         <outlet property="connection2" destination="Kz5-Nd-N4R" id="SIi-gY-fIn"/>
                         <outlet property="connection3" destination="lQt-jg-Fgv" id="Aiv-fg-T9z"/>
                         <outlet property="connection4" destination="wDI-xR-1c6" id="ksE-qU-zob"/>
+                        <outlet property="connection5" destination="wpz-jQ-ALT" id="29s-qn-dNY"/>
+                        <outlet property="connection6" destination="UMC-z6-uCs" id="Zqi-cL-6Gs"/>
                         <outlet property="labelOutlet" destination="ekP-5w-Hv1" id="jFC-bX-iFn"/>
                         <outlet property="myScrollView" destination="b8E-xI-3bN" id="ZsS-uP-JBw"/>
                         <outlet property="myView" destination="ue1-mt-TJi" id="aSG-HC-B23"/>
@@ -205,6 +207,8 @@
                         <outlet property="station3Outlet" destination="cFY-bv-2nW" id="hXt-nz-V8W"/>
                         <outlet property="station4Outlet" destination="mEy-eM-aMf" id="vQt-9q-qRq"/>
                         <outlet property="station5Outlet" destination="HQ5-NO-KKc" id="ktP-u5-SV4"/>
+                        <outlet property="station6Outlet" destination="HQ5-NO-KKc" id="JfQ-Fs-dM5"/>
+                        <outlet property="station7Outlet" destination="zuM-Zg-2le" id="QTd-JF-2gE"/>
                         <outlet property="testView" destination="7nf-TU-Zjb" id="qqJ-1D-2GW"/>
                     </connections>
                 </viewController>

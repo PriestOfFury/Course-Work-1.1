@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5B1CD50124C72FC2000E86AE /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1CD50024C72FC2000E86AE /* Operations.swift */; };
+		5B2E671924FC2D90004EDCDA /* TableViewOfStations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2E671824FC2D90004EDCDA /* TableViewOfStations.swift */; };
 		5B3B035724DC501E0026A856 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B035624DC501E0026A856 /* NodeView.swift */; };
 		5B3B038324DD94540026A856 /* MyScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B038224DD94540026A856 /* MyScrollView.swift */; };
 		5B3B038524DDA7250026A856 /* IBDesignable extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3B038424DDA7250026A856 /* IBDesignable extensions.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		5B1CD50024C72FC2000E86AE /* Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
+		5B2E671824FC2D90004EDCDA /* TableViewOfStations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewOfStations.swift; sourceTree = "<group>"; };
 		5B3B035624DC501E0026A856 /* NodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeView.swift; sourceTree = "<group>"; };
 		5B3B038224DD94540026A856 /* MyScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScrollView.swift; sourceTree = "<group>"; };
 		5B3B038424DDA7250026A856 /* IBDesignable extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IBDesignable extensions.swift"; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				5B8D597F24ABEEA700329AEE /* AppDelegate.swift */,
 				5B8D598124ABEEA700329AEE /* SceneDelegate.swift */,
 				5B8D598324ABEEA700329AEE /* ViewController.swift */,
+				5B2E671824FC2D90004EDCDA /* TableViewOfStations.swift */,
 				5B3B035624DC501E0026A856 /* NodeView.swift */,
 				5BC7435B24D06CCD004F2A5F /* Stations.swift */,
 				5B84930724CA03A700BEE480 /* StationNode.swift */,
@@ -187,6 +190,7 @@
 				5B3B035724DC501E0026A856 /* NodeView.swift in Sources */,
 				5B1CD50124C72FC2000E86AE /* Operations.swift in Sources */,
 				5B84930824CA03A700BEE480 /* StationNode.swift in Sources */,
+				5B2E671924FC2D90004EDCDA /* TableViewOfStations.swift in Sources */,
 				5B84930A24CA040800BEE480 /* Connection.swift in Sources */,
 				5B8D598424ABEEA700329AEE /* ViewController.swift in Sources */,
 				5B8D598024ABEEA700329AEE /* AppDelegate.swift in Sources */,

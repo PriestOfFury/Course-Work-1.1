@@ -13,6 +13,19 @@ var viewController = ViewController()
 
 class Operations {
     
+    var globalSuccession = [String]()
+    var pathTime: Int?
+    
+    
+    var testArr1 = [
+    stations.station1,
+    stations.station2,
+    stations.station3,
+    stations.station4,
+    stations.station5,
+    stations.station6,
+    stations.station7]
+    
     var jopka = ViewController().kekespepes
     
 
@@ -56,14 +69,20 @@ class Operations {
     
     func calculatePath() {
         
+        if startStation?.name == endStation?.name {
+        } else {
         let path = shortestPath(source: startStation!, destination: endStation!)
+        
+        print("ФУНКЦИЯ КАЛЬКУЛЕЙТ ПАТХ ЗАПУСКАЕТСЯ")
+        print("патх = \(path)")
+        //пока падла нил нил, какого хера?? 24.08
         
         print("старт - \(startStation!.name)")
         print("финиш - \(endStation!.name)")
         
         
         
-        if let succession: [String] = path.0?.array.reversed().compactMap({ $0 as? StationNode}).map({$0.name}) {
+        if let succession: [String] = path.0?.array.reversed().compactMap({ $0 }).map({$0.name}) {
 
 
             //changing apacity in views
@@ -82,7 +101,6 @@ class Operations {
                 
             }
             
-            
             //changing apacity in button outlets
             for button in buttonsArray {
                 button?.alpha = 0.3
@@ -93,12 +111,14 @@ class Operations {
                 }
             }
             
-            
-            
+            globalSuccession = succession
+            pathTime = path.1!
             result = "🏁 Кратчайший путь: \(succession)\n время в пути: \(path.1!) минуты"
             } else {
             result = "💥 между \(startStation) & \(endStation) нет пути("
+
             }
+        }
         
     }
     
@@ -119,14 +139,39 @@ class Operations {
     func fullyCalculatePath(sender: StationNode) {
         if startStation == nil {
             startStation = sender
+            viewController.svButtonFrom.setTitle(sender.name, for: .normal)
+            print(viewController.svButtonFrom.titleLabel!.text!)
                 } else {
             endStation = sender
+            viewController.svButtonTo.setTitle(sender.name, for: .normal)
+            print(viewController.svButtonTo.titleLabel!.text!)
+
                 }
         
         
         if startStation != nil && endStation != nil {
                     calculatePath()
                 }
+    }
+    
+    
+    
+    func fullyCalculatePath2() {
+        if startStation != nil && endStation != nil {
+            print("ЗАПУСКАЮ РАСЧЕТ ПУТИ")
+        calculatePath()
+        }
+    }
+    
+    func reverseCalculatePath() {
+        var contempGlobalSuccession = [String]()
+        for item in globalSuccession.reversed() {
+            contempGlobalSuccession.append(item)
+        }
+        globalSuccession = contempGlobalSuccession
+        
+       result = "🏁 Кратчайший путь: \(globalSuccession)\n время в пути: \(pathTime!) минуты"
+        print(result)
     }
     
 

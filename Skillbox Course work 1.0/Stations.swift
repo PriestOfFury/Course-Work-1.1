@@ -12,15 +12,16 @@ import Foundation
 class Stations {
     
     //Line 1
-    let station1 = StationNode(name: "Кропоткинская")
-    let station2 = StationNode(name: "Библиотека имени Ленина")
-    let station3 = StationNode(name: "Охотный ряд")
-    let station4 = StationNode(name: "Лубянка")
-    let station5 = StationNode(name: "Чистые пруды")
+    let station1 = StationNode(name: "Кропоткинская", line: "Сокольническая линия")
+    let station2 = StationNode(name: "Библиотека имени Ленина", line: "Сокольническая линия")
+    let station3 = StationNode(name: "Охотный ряд", line: "Сокольническая линия")
+    let station4 = StationNode(name: "Лубянка", line: "Сокольническая линия")
+    let station5 = StationNode(name: "Чистые пруды", line: "Сокольническая линия")
     
     
     //Line 2 TEST
-    let station6 = StationNode(name: "Кузнецкий мост")
-    let station7 = StationNode(name: "Пушкинская")
+    let station6 = StationNode(name: "Кузнецкий мост", line: "Таганско-краснопресненская линия")
+    let station7 = StationNode(name: "Пушкинская", line: "Таганско-краснопресненская линия")
 }
+
 
