@@ -68,6 +68,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegat
     let svReverseButton = UIButton()
     let svCancelButtonFrom = UIButton()
     var svCancelButtonTo = UIButton()
+    var svCancelButtonChoosing = UIButton()
 
 
 
@@ -83,7 +84,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegat
         
 
 
-        tableViewSV.frame = CGRect(x: 0, y: 50, width: view.frame.width, height: 300)
+        tableViewSV.frame = CGRect(x: 0, y: 100, width: view.frame.width, height: 300)
         self.slidingView.addSubview(tableViewSV)
                 tableViewSV.delegate = self
                tableViewSV.dataSource = self
@@ -144,7 +145,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegat
         
         
         //adding result label in sliding view
-        svResultLabel.frame = CGRect(x: 100, y: 0, width: self.slidingView.frame.width, height: 50)
+        svResultLabel.frame = CGRect(x: 100, y: 00, width: self.slidingView.frame.width, height: 60)
+        svResultLabel.numberOfLines = 2
         svResultLabel.text = "Выберите станцию"
         self.slidingView.addSubview(svResultLabel)
         
@@ -158,6 +160,15 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegat
         self.svButtonTo.addSubview(svCancelButtonTo)
         self.svCancelButtonTo.addTarget(self, action: #selector(cancelButtonTo), for: .touchDown)
         self.svCancelButtonFrom.addTarget(self, action: #selector(cancelButtonFrom), for: .touchDown)
+        
+        
+        //creating button to cancel inputting text
+        svCancelButtonChoosing.frame = CGRect(x: self.slidingView.frame.width - 100, y: 0, width: 100, height: 60)
+        svCancelButtonChoosing.setTitle("Отмена", for: .normal)
+        svCancelButtonChoosing.setTitleColor(.blue, for: .normal)
+        svCancelButtonChoosing.isHidden = true
+        slidingView.addSubview(svCancelButtonChoosing)
+        svCancelButtonChoosing.addTarget(self, action: #selector(swipeSvCancelButtonChoosing), for: .touchDown)
         
         
 
@@ -315,6 +326,18 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegat
         
     }
     
+    @objc func swipeSvCancelButtonChoosing() {
+        UIView.animate(withDuration: 0.3) {
+             self.slidingView.frame = CGRect(x: 0, y: self.view.frame.height / 1.75 , width: self.view.frame.width, height: self.view.frame.height / 3)
+             self.svButtonFrom.isHidden = false
+             self.textfieldSV.isHidden = true
+             self.tableViewSV.isHidden = true
+             self.svButtonTo.isHidden = false
+            self.svCancelButtonChoosing.isHidden = true
+
+         }
+    }
+    
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == UISwipeGestureRecognizer.Direction.up {
@@ -324,6 +347,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegat
                 self.textfieldSV.isHidden = true
                 self.tableViewSV.isHidden = true
                 self.svButtonTo.isHidden = false
+                self.svCancelButtonChoosing.isHidden = true
+
             }
         } else if gesture.direction == UISwipeGestureRecognizer.Direction.down {
             UIView.animate(withDuration: 0.3) {
@@ -332,6 +357,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegat
                 self.textfieldSV.isHidden = true
                 self.svButtonFrom.isHidden = false
                 self.svButtonTo.isHidden = false
+                self.svCancelButtonChoosing.isHidden = true
             }
         }
     }
@@ -344,6 +370,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegat
             self.textfieldSV.isHidden = false
             self.tableViewSV.isHidden = false
             self.svButtonTo.isHidden = true
+            self.svReverseButton.isHidden = true
+            self.svCancelButtonChoosing.isHidden = false
         }
     }
     
@@ -356,28 +384,30 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegat
             self.textfieldSV.isHidden = false
             self.tableViewSV.isHidden = false
             self.svButtonTo.isHidden = true
+            self.svCancelButtonChoosing.isHidden = false
         }
     }
     
     @objc func addingToArr() {
         if textfieldSV.text != nil {
             searchedArray.removeAll()
-            var totalMatch = false
-
+            var match = false
+            let n = textfieldSV.text!.count
             
-        for element in operations.testArr1 {
+        
+            for element in operations.testArr1 {
 
-            let lowercasedElement = element.name.lowercased()
-            if lowercasedElement.contains(textfieldSV.text!.lowercased()) {
-                searchedArray.append(element.name)
-                tableViewSV.reloadData()
-                totalMatch = true
+                    if element.name.lowercased().prefix(n).elementsEqual(textfieldSV.text!.lowercased().prefix(n)) {
+                        searchedArray.append(element.name)
+                        tableViewSV.reloadData()
+                        match = true
+
+                    }
+                    
+
             }
-
-
-        }
             
-            if totalMatch == false {
+            if match == false {
                 searchedArray.removeAll()
                 tableViewSV.reloadData()
             }

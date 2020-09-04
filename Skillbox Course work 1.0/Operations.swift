@@ -13,6 +13,9 @@ var viewController = ViewController()
 
 class Operations {
     
+    
+
+    
     var globalSuccession = [String]()
     var pathTime: Int?
     
@@ -31,7 +34,10 @@ class Operations {
 
     //НУЖНО ДОБАВИТЬ ИНФУ ПРО СТАНЦИИ!!
     
+ 
+    
     var result = "Выберите конечную станцию"
+
     
     func chooseButton(sender: UIButton) {
     }
@@ -67,7 +73,14 @@ class Operations {
     
     
     
+    
     func calculatePath() {
+        
+        //for time
+         let date = Date()
+         let hour = Calendar.current.component(.hour, from: date)
+         let minute = Calendar.current.component(.minute, from: date)
+        var arrivalTime = date
         
         if startStation?.name == endStation?.name {
         } else {
@@ -113,7 +126,9 @@ class Operations {
             
             globalSuccession = succession
             pathTime = path.1!
-            result = "🏁 Кратчайший путь: \(succession)\n время в пути: \(path.1!) минуты"
+            
+            //arr
+            result = "\(path.1!) мин. \n\(hour):\(minute) - 🏁 Кратчайший путь: \(succession)\n время в пути:  минуты"
             } else {
             result = "💥 между \(startStation) & \(endStation) нет пути("
 
@@ -171,6 +186,7 @@ class Operations {
         globalSuccession = contempGlobalSuccession
         
        result = "🏁 Кратчайший путь: \(globalSuccession)\n время в пути: \(pathTime!) минуты"
+
         print(result)
     }
     

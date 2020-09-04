@@ -13,6 +13,7 @@ import UIKit
 extension ViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return searchedArray.count
+
   }
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableViewSV.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -37,7 +38,7 @@ extension ViewController: UITableViewDataSource {
         }
         
         UIView.animate(withDuration: 0.3) {
-            self.slidingView.frame = CGRect(x: 0, y: self.view.frame.height - 100, width: self.view.frame.width, height: 200)
+             self.slidingView.frame = CGRect(x: 0, y: self.view.frame.height / 1.75 , width: self.view.frame.width, height: self.view.frame.height / 3)
             self.tableViewSV.isHidden = true
             self.textfieldSV.isHidden = true
             self.svButtonFrom.isHidden = false
@@ -45,6 +46,7 @@ extension ViewController: UITableViewDataSource {
             self.textfieldSV.text = ""
             self.searchedArray.removeAll()
             self.tableViewSV.reloadData()
+
         }
 
 
