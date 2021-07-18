@@ -25,13 +25,13 @@ extension ViewController: UITableViewDataSource {
         
         if tappedFrom == "From" {
         svButtonFrom.setTitle(searchedArray[indexPath.row], for: .normal)
-            operations.fullyCalculatePath(sender: operations.testArr1[indexPath.row])
+            //operations.fullyCalculatePath(sender: operations.testArr1[indexPath.row])
             labelOutlet.text = operations.result
             svResultLabel.text = operations.result
 
         } else if tappedFrom == "To" {
             svButtonTo.setTitle(searchedArray[indexPath.row], for: .normal)
-            operations.fullyCalculatePath(sender: operations.testArr1[indexPath.row])
+          //  operations.fullyCalculatePath(sender: operations.testArr1[indexPath.row])
             labelOutlet.text = operations.result
             svResultLabel.text = operations.result
 

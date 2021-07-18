@@ -10,15 +10,17 @@ import Foundation
 import UIKit
 
 class Connection {
-      public let to: StationNode
-      public let weight: Int
-        public var byLeg: Bool
+    public let to: StationNode
+    public let weight: Int
+    public let changes: Int
+    public let byLeg: Bool
 
       
-    public init(to node: StationNode, weight: Int, byLeg: Bool) {
+    public init(to node: StationNode, weight: Int, byLeg: Bool, changes: Int) {
         assert(weight >= 0, "weight has to be equal or greater than zero")
         self.to = node
         self.weight = weight
         self.byLeg = byLeg
+        self.changes = changes
       }
 }

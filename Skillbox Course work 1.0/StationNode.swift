@@ -9,11 +9,14 @@
 import Foundation
 import UIKit
 
-class StationNode {
+class StationNode: NSObject {
     var visited = false
     var connections: [Connection] = []
     let name: String
     let line: String
+    var fullName: String {
+        return name + "," + line
+    }
     
     init(name: String, line: String) {
       self.name = name
